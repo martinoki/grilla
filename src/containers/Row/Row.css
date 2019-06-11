@@ -1,0 +1,7 @@
+.row{
+    border: 'solid 1px black';
+    width: '50px';
+    height: '50px';
+    text-align: 'center';
+    cursor: 'pointer';
+}

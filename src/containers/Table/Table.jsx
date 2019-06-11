@@ -1,28 +1,40 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
+import Row from "../Row/Row";
 
 class Table extends Component {
   state = {};
 
   componentDidMount() {
-    
+    console.log("props:", this.props);
   }
 
   render() {
-    return (
-        <div>
+    let rows = [];
+    if (this.props.rows && this.props.rows) {
+      for (let i = 0; i < this.props.rows; i++) {
+        rows.push(
+          <Row
+            key={i}
+            onClick={this.props.onClick}
+            nRow={i}
+            cols={this.props.cols}
+          >
             asd
-        </div>
-//       <Container className="pt-5" fluid>
-//         <Title leftText={projectName}>Reporte de Sprints</Title>
-//         <Row>
-//           <Col>
-//             {Object.keys(milestones).length ? (
-//               <GanttChart milestones={milestones} />
-//             ) : null}
-//           </Col>
-//         </Row>
-//       </Container>
+          </Row>
+        );
+      }
+    }
+
+    return (
+      <div>
+        {this.props.cols > 0 && this.props.rows > 0 ? (
+          <table style={{ border: "solid 1px black" }}>
+            <tbody>{rows}</tbody>
+          </table>
+        ) : (
+          <div>Ingrese filas y columnas</div>
+        )}
+      </div>
     );
   }
 }
