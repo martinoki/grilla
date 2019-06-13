@@ -5,7 +5,7 @@ class Table extends Component {
   state = {};
 
   componentDidMount() {
-    console.log("props:", this.props);
+    
   }
 
   render() {
@@ -14,13 +14,13 @@ class Table extends Component {
       for (let i = 0; i < this.props.rows; i++) {
         rows.push(
           <Row
+            table={this.props.table}
             key={i}
             onClick={this.props.onClick}
             nRow={i}
+            rows={this.props.rows}
             cols={this.props.cols}
-          >
-            asd
-          </Row>
+          />
         );
       }
     }

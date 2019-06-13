@@ -8,9 +8,10 @@ class Row extends Component {
 
   render() {
     let cols = [];
-    for (let i = 0; i < this.props.cols; i++) {
+    for (let nCol = 0; nCol < this.props.cols; nCol++) {
       cols.push(
         <td
+          unselectable="on"
           style={{
             border: "solid 1px black",
             width: "50px",
@@ -18,12 +19,13 @@ class Row extends Component {
             textAlign: "center",
             cursor: "pointer"
           }}
-          key={i}
+          key={nCol}
           onClick={() => {
-            this.props.onClick(this.props.nRow, i);
+            this.props.onClick(this.props.nRow, nCol);
           }}
-        >
-          {this.props.nRow};{i}
+        ><button style={{    width: '100%', height: '100%', fontSize: '20px'}}>
+          {this.props.table[nCol + this.props.cols*this.props.nRow]}
+        </button>
         </td>
       );
     }

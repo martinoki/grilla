@@ -6,14 +6,36 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      states: 0,
-      rows: 0,
-      cols: 0
+      possibleStates: [" ", "X", "O"],
+      defaultState: " ",
+      rows: 5,
+      cols: 4,
+      table: []
     };
   }
 
-  onClick = (row, col) => {
-    console.log(row, col);
+  componentDidMount() {
+    let newArray = new Array(this.state.rows * this.state.cols);
+    for (let i = 0; i < newArray.length; i++) {
+      newArray[i] = " ";
+    }
+    newArray.forEach(element => {
+      element = this.state.defaultState;
+    });
+    this.setState({ table: newArray });
+  }
+
+  onClick = (nRow, nCol) => {
+    console.log(nRow, nCol);
+    let updatedTable = [...this.state.table];
+    let oldValue = updatedTable[nCol + this.state.cols * nRow];
+    let index = this.state.possibleStates.findIndex(item => item == oldValue);
+    let newValue =
+      index == this.state.possibleStates.length-1
+        ? this.state.possibleStates[0]
+        : this.state.possibleStates[index + 1];
+    updatedTable[nCol + this.state.cols * nRow] = newValue;
+    this.setState({ table: updatedTable });
   };
 
   onChange = e => {
@@ -25,47 +47,12 @@ class App extends Component {
   render() {
     return (
       <div style={{ padding: "5px" }}>
-        <div>
-          <span>
-            Número de estados:
-            <input
-              id="states"
-              min="0"
-              style={{ margin: "30px 10px 30px 10px", width: "50px" }}
-              type="number"
-              value={this.state.states}
-              onChange={this.onChange}
-            />
-          </span>
-          <span>
-            Filas:
-            <input
-              id="rows"
-              min="0"
-              style={{ margin: "30px 10px 30px 10px", width: "50px" }}
-              type="number"
-              value={this.state.rows}
-              onChange={this.onChange}
-            />
-          </span>
-          <span>
-            Columnas:
-            <input
-              id="cols"
-              min="0"
-              style={{ margin: "30px 10px 30px 10px", width: "50px" }}
-              type="number"
-              value={this.state.cols}
-              onChange={this.onChange}
-            />
-          </span>
-        </div>
-
         <Table
-          states={this.state.states}
+          possibleStates={this.state.states}
           onClick={this.onClick}
           rows={this.state.rows}
           cols={this.state.cols}
+          table={this.state.table}
         />
       </div>
     );
