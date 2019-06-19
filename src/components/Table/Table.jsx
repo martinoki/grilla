@@ -4,9 +4,7 @@ import Row from "../Row/Row";
 class Table extends Component {
   state = {};
 
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
   render() {
     let rows = [];
@@ -28,7 +26,7 @@ class Table extends Component {
     return (
       <div>
         {this.props.cols > 0 && this.props.rows > 0 ? (
-          <table style={{ border: "solid 1px black" }}>
+          <table style={{ borderCollapse: 'collapse' }}>
             <tbody>{rows}</tbody>
           </table>
         ) : (

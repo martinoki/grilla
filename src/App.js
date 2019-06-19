@@ -1,28 +1,29 @@
 import React, { Component } from "react";
 import "./App.css";
-import Table from "./containers/Table/Table";
+import Table from "./components/Table/Table";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      possibleStates: [" ", "X", "O"],
-      defaultState: " ",
-      rows: 5,
-      cols: 4,
-      table: []
+      possibleStates: [0, 1, 2, 3, 4, 5, 6],
+      defaultState: 0,
+      rows: 3,
+      cols: 2,
+      table: [0, 0, 0, 0, 0, 0 ]
     };
   }
 
   componentDidMount() {
-    let newArray = new Array(this.state.rows * this.state.cols);
-    for (let i = 0; i < newArray.length; i++) {
-      newArray[i] = " ";
-    }
-    newArray.forEach(element => {
-      element = this.state.defaultState;
-    });
-    this.setState({ table: newArray });
+    // let newArray = new Array(this.state.rows * this.state.cols);
+    // for (let i = 0; i < newArray.length; i++) {
+    //   newArray[i] = " ";
+    // }
+    // newArray.forEach(element => {
+    //   element = this.state.defaultState;
+    // });
+    // console.log(newArray)
+    // this.setState({ table: newArray });
   }
 
   onClick = (nRow, nCol) => {
@@ -46,9 +47,9 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{ padding: "5px" }}>
+      <div style={{ padding: "5px", display: 'flex', justifyContent: 'center' }}>
         <Table
-          possibleStates={this.state.states}
+          possibleStates={this.state.possibleStates}
           onClick={this.onClick}
           rows={this.state.rows}
           cols={this.state.cols}

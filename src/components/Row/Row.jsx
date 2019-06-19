@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 
 class Row extends Component {
-
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
   render() {
     let cols = [];
@@ -17,15 +14,24 @@ class Row extends Component {
             width: "50px",
             height: "50px",
             textAlign: "center",
-            cursor: "pointer"
+            cursor: "pointer",
+            padding: "0"
           }}
           key={nCol}
           onClick={() => {
             this.props.onClick(this.props.nRow, nCol);
           }}
-        ><button style={{    width: '100%', height: '100%', fontSize: '20px'}}>
-          {this.props.table[nCol + this.props.cols*this.props.nRow]}
-        </button>
+        >
+          <button
+            style={{
+              width: "100%",
+              height: "100%",
+              fontSize: "20px",
+              cursor: "pointer"
+            }}
+          >
+            {this.props.table[nCol + this.props.cols * this.props.nRow]}
+          </button>
         </td>
       );
     }
