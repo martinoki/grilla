@@ -6,6 +6,7 @@ class Row extends Component {
   render() {
     let cols = [];
     for (let nCol = 0; nCol < this.props.cols; nCol++) {
+      let value = this.props.table[nCol + this.props.cols * this.props.nRow];
       cols.push(
         <td
           unselectable="on"
@@ -30,7 +31,7 @@ class Row extends Component {
               cursor: "pointer"
             }}
           >
-            {this.props.table[nCol + this.props.cols * this.props.nRow]}
+            {this.props.possibleStates[value]}
           </button>
         </td>
       );

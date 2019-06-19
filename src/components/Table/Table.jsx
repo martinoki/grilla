@@ -18,6 +18,7 @@ class Table extends Component {
             nRow={i}
             rows={this.props.rows}
             cols={this.props.cols}
+            possibleStates={this.props.possibleStates}
           />
         );
       }

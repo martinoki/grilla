@@ -6,11 +6,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      possibleStates: [0, 1, 2, 3, 4, 5, 6],
+      possibleStates: ["Posición 1", "B", "C", "D", "E", "F", "G"],
       defaultState: 0,
-      rows: 3,
-      cols: 2,
-      table: [0, 0, 0, 0, 0, 0 ]
+      rows: 2,
+      cols: 3,
+      table: [0, 0, 0, 0, 0, 0]
     };
   }
 
@@ -30,12 +30,16 @@ class App extends Component {
     console.log(nRow, nCol);
     let updatedTable = [...this.state.table];
     let oldValue = updatedTable[nCol + this.state.cols * nRow];
-    let index = this.state.possibleStates.findIndex(item => item == oldValue);
-    let newValue =
-      index == this.state.possibleStates.length-1
-        ? this.state.possibleStates[0]
-        : this.state.possibleStates[index + 1];
-    updatedTable[nCol + this.state.cols * nRow] = newValue;
+    if(oldValue <5)
+      updatedTable[nCol + this.state.cols * nRow] = oldValue+1;
+    else
+      updatedTable[nCol + this.state.cols * nRow] = 0;
+
+    // let newValue =
+    //   index == this.state.possibleStates.length - 1
+    //     ? this.state.possibleStates[0]
+    //     : this.state.possibleStates[index + 1];
+    // updatedTable[nCol + this.state.cols * nRow] = newValue;
     this.setState({ table: updatedTable });
   };
 
@@ -47,7 +51,9 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{ padding: "5px", display: 'flex', justifyContent: 'center' }}>
+      <div
+        style={{ padding: "5px", display: "flex", justifyContent: "center" }}
+      >
         <Table
           possibleStates={this.state.possibleStates}
           onClick={this.onClick}
