@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Row from "../Row/Row";
+import './Table.css';
 
 class Table extends Component {
   state = {};
@@ -12,7 +13,7 @@ class Table extends Component {
       for (let i = 0; i < this.props.rows; i++) {
         rows.push(
           <Row
-            table={this.props.table}
+            data={this.props.data}
             key={i}
             onClick={this.props.onClick}
             nRow={i}
@@ -27,7 +28,7 @@ class Table extends Component {
     return (
       <div>
         {this.props.cols > 0 && this.props.rows > 0 ? (
-          <table style={{ borderCollapse: 'collapse' }}>
+          <table className="table-border">
             <tbody>{rows}</tbody>
           </table>
         ) : (
