@@ -32,7 +32,7 @@ class Table extends Component {
             <tbody>{rows}</tbody>
           </table>
         ) : (
-          <div>Ingrese filas y columnas</div>
+          <div>Ingrese cantidad de filas y columnas</div>
         )}
       </div>
     );
